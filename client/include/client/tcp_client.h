@@ -13,6 +13,7 @@ namespace Deadpool
     class TCPClient
     {
         private:
+            int _tabs;
             std::string _username;
             std::queue<std::string> _outgoingMessages;
             std::vector<std::string> _chatHistory;

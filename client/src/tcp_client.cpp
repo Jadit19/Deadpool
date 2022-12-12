@@ -10,9 +10,9 @@ namespace Deadpool
 
         system("clear");
 
-        std::cout << "What do we call you?: ";
+        std::cout << "> What do we call you?: ";
         getline(std::cin, _username);
-        std::cout << _username << " has joined the party!" << std::endl << std::endl;
+        std::cout << "> " << _username << " has joined the party!" << std::endl << std::endl;
     }
 
     void TCPClient::run()
@@ -57,7 +57,17 @@ namespace Deadpool
             printf("\x1b[1F");
             printf("\x1b[2K");
         }
-        std::cout << receivedMsg.getSender() << "\t: " << receivedMsg.getData() << std::endl;
+
+        std::cout << "> " << receivedMsg.getSender();
+        int senderNameSize = 14 - receivedMsg.getSender().size();
+        
+        while (senderNameSize > 0)
+        {
+            std::cout << "\t";
+            senderNameSize -= 8;
+        }
+
+        std::cout << ": " << receivedMsg.getData() << std::endl;
         _chatHistory.push_back(receivedMsg.getJson());
     }
 
